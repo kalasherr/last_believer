@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4tik4rim5wqe"]
+
+[ext_resource type="Script" path="res://scripts/common_ghost.gd" id="1_g2yyo"]
+[ext_resource type="Texture2D" uid="uid://c21k566qgogai" path="res://sprites/enemies/common_ghost1.png" id="2_00r6v"]
+[ext_resource type="Texture2D" uid="uid://dbjbho0w2nsfc" path="res://sprites/enemies/common_ghost2.png" id="3_h3edg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ehfk"]
+radius = 7.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_up187"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_00r6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h3edg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nix1m"]
+radius = 7.0
+
+[node name="CommonGhost" type="CharacterBody2D"]
+script = ExtResource("1_g2yyo")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_6ehfk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_up187")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nix1m")

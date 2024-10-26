@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2wls0dvc3c7c"]
+
+[ext_resource type="Script" path="res://scripts/shotgun_bullet.gd" id="1_gkmmh"]
+[ext_resource type="Texture2D" uid="uid://07886f8b4gqa" path="res://sprites/bullets/bullet.png" id="2_tgfi2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tysk7"]
+size = Vector2(4, 1)
+
+[node name="ShotgunBullet" type="CharacterBody2D"]
+script = ExtResource("1_gkmmh")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_tysk7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tgfi2")
+offset = Vector2(1, 0)
+
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]

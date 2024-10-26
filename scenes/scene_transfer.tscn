@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmp7p1vvhqt4k"]
+
+[ext_resource type="Texture2D" uid="uid://0yy2vehcj86f" path="res://sprites/location/wooden_floor.png" id="1_da738"]
+[ext_resource type="Script" path="res://scripts/scene_transfer.gd" id="2_3f5ns"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iijil"]
+texture = ExtResource("1_da738")
+0:0/0 = 0
+0:0/0/modulate = Color(0, 0, 0, 1)
+
+[sub_resource type="TileSet" id="TileSet_byfn7"]
+sources/0 = SubResource("TileSetAtlasSource_iijil")
+
+[node name="SceneTransfer" type="TileMap"]
+z_index = 102
+tile_set = SubResource("TileSet_byfn7")
+format = 2
+script = ExtResource("2_3f5ns")

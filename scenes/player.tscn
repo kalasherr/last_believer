@@ -1,0 +1,92 @@
+[gd_scene load_steps=15 format=3 uid="uid://dcytc5uniypg"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lmleq"]
+[ext_resource type="Texture2D" uid="uid://1cpuacp0wjwy" path="res://sprites/player/walk1.png" id="2_kr8c6"]
+[ext_resource type="Texture2D" uid="uid://ciipwte8a8vf2" path="res://sprites/player/walk2.png" id="3_m0j35"]
+[ext_resource type="Texture2D" uid="uid://belgtvi8e2grn" path="res://sprites/player/walk3.png" id="4_smf2i"]
+[ext_resource type="Texture2D" uid="uid://dfr7bfibb66j3" path="res://sprites/player/walk4.png" id="5_1tg61"]
+[ext_resource type="Texture2D" uid="uid://b6frdjya8kyki" path="res://sprites/player/walk5.png" id="6_myqkm"]
+[ext_resource type="Texture2D" uid="uid://bwwoynlgxnbkc" path="res://sprites/player/walk6.png" id="7_aawob"]
+[ext_resource type="Texture2D" uid="uid://b33sm1cq1tlm3" path="res://sprites/player/walk7.png" id="8_hlxvk"]
+[ext_resource type="Texture2D" uid="uid://l5i8xyrsjjhm" path="res://sprites/player/walk8.png" id="9_87fdw"]
+[ext_resource type="PackedScene" uid="uid://b11ytvdb136hf" path="res://scenes/shotgun.tscn" id="11_dle8n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ps5fq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kr8c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m0j35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_smf2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1tg61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_myqkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aawob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hlxvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_87fdw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcjgx"]
+size = Vector2(5, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6e0t"]
+radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7kyq"]
+size = Vector2(5, 12)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_lmleq")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="Sprites"]
+sprite_frames = SubResource("SpriteFrames_ps5fq")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Shotgun" parent="Weapon" instance=ExtResource("11_dle8n")]
+z_index = 1
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_wcjgx")
+
+[node name="Upgrades" type="Node2D" parent="."]
+
+[node name="KnockbackArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="KnockbackArea"]
+shape = SubResource("CircleShape2D_i6e0t")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_y7kyq")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
