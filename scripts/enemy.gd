@@ -1,15 +1,17 @@
 extends CharacterBody2D
 class_name Enemy
-var hp = 100
-var speed = 40
+var hp = 50
+var speed = 50
 var pushed = false
 var default_push_speed = 150
 var push_speed = default_push_speed
+var fearmonium_active = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _process(delta):
+	$Sprite.play("default")
 	if !pushed:
 		move_controller()
 	else:
@@ -31,7 +33,14 @@ func death():
 	queue_free()
 
 func move_controller():
-	velocity = (get_parent().get_parent().get_node("Player").global_position - global_position).normalized() * speed
+	var fearmonium_multiplier = 1.0
+	if fearmonium_active:
+		fearmonium_multiplier = 30/(get_parent().get_parent().get_node("Player").global_position - global_position).length()
+		if fearmonium_multiplier < 0.8:
+			fearmonium_multiplier = 0.8
+		elif fearmonium_multiplier > 1.3:
+			fearmonium_multiplier = 1.3
+	velocity = (get_parent().get_parent().get_node("Player").global_position - global_position).normalized() * speed * fearmonium_multiplier
 	if velocity.x < 0:
 		for child in get_children():
 			child.scale.x = -1

@@ -1,9 +1,55 @@
-[gd_scene format=3 uid="uid://dhjuby025fx7n"]
+[gd_scene load_steps=6 format=3 uid="uid://dhjuby025fx7n"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_01qit"]
+[ext_resource type="Texture2D" uid="uid://d3vvjcxmprftk" path="res://sprites/gui/psalm.png" id="1_y4mjp"]
+[ext_resource type="FontFile" uid="uid://dbl2o1uud4k7q" path="res://PixeloidMono-d94EV.ttf" id="3_t8uph"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7aiss"]
+font = ExtResource("3_t8uph")
+font_size = 9
+font_color = Color(0.121569, 0.121569, 0.12549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjcjh"]
+font = ExtResource("3_t8uph")
+font_size = 9
+font_color = Color(0.501961, 0.498039, 0.498039, 1)
 
 [node name="Card" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.4
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_01qit")
+
+[node name="Psalm" type="Sprite2D" parent="."]
+position = Vector2(64, 96)
+texture = ExtResource("1_y4mjp")
+
+[node name="Label" type="Label" parent="Psalm"]
+texture_filter = 1
+offset_left = -58.0
+offset_top = -91.0
+offset_right = 59.0
+offset_bottom = -8.0
+label_settings = SubResource("LabelSettings_7aiss")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Psalm"]
+offset_left = -58.0
+offset_top = -7.0
+offset_right = 59.0
+offset_bottom = 91.0
+label_settings = SubResource("LabelSettings_vjcjh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 194.0
+offset_right = 96.0
+offset_bottom = 205.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

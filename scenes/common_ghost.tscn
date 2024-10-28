@@ -34,7 +34,7 @@ collision_mask = 4
 [node name="Collision" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_6ehfk")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_up187")
 
 [node name="Collision" type="CollisionShape2D" parent="."]

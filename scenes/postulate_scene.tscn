@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://lk8k5iygi6xk"]
+
+[ext_resource type="Script" path="res://scripts/postulate_scene.gd" id="1_a7ivx"]
+[ext_resource type="FontFile" uid="uid://dbl2o1uud4k7q" path="res://PixeloidMono-d94EV.ttf" id="2_6lles"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_88l8q"]
+font = ExtResource("2_6lles")
+font_size = 9
+
+[node name="PostulateScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a7ivx")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 320.0
+offset_bottom = 234.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_88l8q")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -76,8 +76,6 @@ collision_mask = 4
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_wcjgx")
 
-[node name="Upgrades" type="Node2D" parent="."]
-
 [node name="KnockbackArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4

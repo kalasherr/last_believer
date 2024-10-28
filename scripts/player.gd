@@ -1,14 +1,15 @@
 extends CharacterBody2D
 var speed = 60
 var diagonalized_movement = false
-var hp = 1
+var hp = 3
 
 func _ready():
 	pass
 
 func _process(delta):
+	get_parent().check_hp()
 	if hp <= 0:
-		SceneTransfer.transfer(get_parent(), "res://scenes/projectile.tscn")
+		SceneTransfer.transfer(get_parent(), "res://scenes/main_menu.tscn")
 	movement_process()
 
 func movement_process():
@@ -55,8 +56,11 @@ func sprite_controller():
 
 
 func _on_hit_box_area_entered(area):
-	if area.get_parent() is Enemy:
+	if area.get_parent() is Enemy or area.get_parent() is ImpProjectile:
 		hp -= 1
-		for enemy in $KnockbackArea.get_overlapping_areas():
-			if enemy.get_parent() is Enemy:
-				enemy.get_parent().push((enemy.get_parent().global_position - global_position).normalized(), 100)
+		if hp!=0:
+			for enemy in $KnockbackArea.get_overlapping_areas():
+				if enemy.get_parent() is Enemy :
+					enemy.get_parent().push((enemy.get_parent().global_position - global_position).normalized(), 100)
+				elif area.get_parent() is ImpProjectile:
+					area.get_parent().queue_free()

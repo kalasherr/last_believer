@@ -5,9 +5,9 @@ var attack_power
 var direction = Vector2(1,0)
 var start_point = Vector2.ZERO
 var max_range = 100.0
+var explosive = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	start_point = global_position
 
 
@@ -21,5 +21,5 @@ func _process(delta):
 		destroy()
 
 func destroy():
-	modulate[3] = 0
+	#modulate[3] = 0
 	queue_free()

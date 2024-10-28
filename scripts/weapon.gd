@@ -5,12 +5,15 @@ var attack_power = 10.0
 var spread = 20.0
 var bullets_per_shot = 1
 var range = 100
+var explosion_chance = 0
+var changed = false
 func load_stats():
 	pass
 
 func _ready():
-	add_cooldown()
 	load_stats()
+	add_cooldown()
+	Global.release_effects()
 
 func attack():
 	pass

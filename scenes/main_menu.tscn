@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkvut4mqmdwv4"]
+[gd_scene load_steps=6 format=3 uid="uid://dkvut4mqmdwv4"]
 
 [ext_resource type="Texture2D" uid="uid://cx1l6x2yrki2k" path="res://sprites/gui/button.png" id="1_ctkbh"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_vhqvr"]
+[ext_resource type="Texture2D" uid="uid://bwpranxsh8x8d" path="res://sprites/gui/main_menu_background.png" id="2_0jf60"]
 [ext_resource type="FontFile" uid="uid://ca1f8s8rpbtqv" path="res://Pixeled.ttf" id="2_jo3vj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbpel"]
 font = ExtResource("2_jo3vj")
-font_size = 10
+font_size = 5
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +16,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vhqvr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("2_0jf60")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -23,25 +30,51 @@ offset_bottom = 240.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 16)
 layout_mode = 2
-texture_normal = ExtResource("1_ctkbh")
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/StartButton"]
 layout_mode = 0
-offset_right = 48.0
-offset_bottom = 23.0
-scale = Vector2(0.5, 0.5)
-text = "a"
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 15.0
+text = "New game"
 label_settings = SubResource("LabelSettings_tbpel")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OptionsButton" type="TextureButton" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 16)
 layout_mode = 2
 texture_normal = ExtResource("1_ctkbh")
 
-[node name="QuitButton" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/OptionsButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 15.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_tbpel")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 16)
 layout_mode = 2
-texture_normal = ExtResource("1_ctkbh")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/QuitButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 15.0
+text = "Quit game"
+label_settings = SubResource("LabelSettings_tbpel")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,11 +1,13 @@
 extends Weapon
 
 func load_stats():
-	bullets_per_shot = 6
-	cooldown = 1.0
-	attack_power = 4.0
-	spread = 20.0
-	range = 80.0
+	if !changed:
+		changed = true
+		bullets_per_shot = 6
+		cooldown = 1.0
+		attack_power = 4.0
+		spread = 20.0
+		range = 80.0
 
 func attack():
 	if $CooldownTimer.time_left == 0:

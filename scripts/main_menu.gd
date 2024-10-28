@@ -9,3 +9,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_start_button_pressed():
+	
+	Global.remaining_buffs = []
+	Global.remaining_debuffs = []
+	Global.active_effects = []
+	Global.fill_buff_array()
+	Global.fill_debuff_array()
+	Global.current_floor = 1
+	SceneTransfer.transfer(self, "res://scenes/postulate_scene.tscn")
+
+func _on_quit_button_pressed():
+	get_tree().quit()

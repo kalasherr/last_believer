@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bfamfxb3utsse"]
+[gd_scene load_steps=2 format=3 uid="uid://bfamfxb3utsse"]
+
+[ext_resource type="PackedScene" uid="uid://dhjuby025fx7n" path="res://scenes/card.tscn" id="1_r5fyi"]
 
 [node name="ChoiceScene" type="Control"]
 layout_mode = 3
@@ -7,3 +9,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="Card" parent="HBoxContainer/CenterContainer" instance=ExtResource("1_r5fyi")]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+
+[node name="Card2" parent="HBoxContainer/CenterContainer2" instance=ExtResource("1_r5fyi")]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 2
