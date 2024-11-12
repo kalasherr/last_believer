@@ -3,7 +3,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AudioStreamPlayer2D.play()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,7 +13,7 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
-	
+	$AudioStreamPlayer2D2.play()
 	Global.remaining_buffs = []
 	Global.remaining_debuffs = []
 	Global.active_effects = []
@@ -23,3 +24,16 @@ func _on_start_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+	$AudioStreamPlayer2D2.play()
+
+func _on_options_button_pressed():
+	SceneTransfer.transfer(self, "res://scenes/effect_descriptions.tscn")
+	$AudioStreamPlayer2D2.play()
+
+func _on_audio_stream_player_2d_finished():
+	$AudioStreamPlayer2D.play()
+	
+
+
+func _on_credits_button_pressed():
+	SceneTransfer.transfer(self,"res://scenes/credits.tscn" )

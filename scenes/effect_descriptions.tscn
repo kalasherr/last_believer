@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://6npmlvy5trhk"]
+
+[ext_resource type="Script" path="res://scripts/effect_descriptions.gd" id="1_dv4ac"]
+[ext_resource type="FontFile" uid="uid://dbl2o1uud4k7q" path="res://PixeloidMono-d94EV.ttf" id="1_gn6kh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cyg76"]
+font = ExtResource("1_gn6kh")
+font_size = 9
+
+[node name="EffectDescriptions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dv4ac")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 486.0
+offset_bottom = 221.0
+text = "Blessings:
+Silver bullets: + 2 damage per bullet
+Faith surge: + 15% player movespeed
+Reload blessing: + 25% player firerate
+Sawed-off: + 2 damage per bullet, + 1 bullet per shot,
++ 100% spread, -40% range
+Prophet: - 2 player hp, + 100% damage per bullet
+Sniper shotgun: + 50% range, - 50% spread,
++ 1 damage per bullet
+Curses:
+Devil's extension: +10 sec to act timer
+Unholy duplication: + 33% spawnrate
+Imps: add ranged enemies
+Pentagramma: add summoners
+Prayerproof: + 30% enemies hp
+Fan shooter: + 200% spread, + 30% damage per bullet
+Fearmonium: enemy speed depends on distance to you"
+label_settings = SubResource("LabelSettings_cyg76")

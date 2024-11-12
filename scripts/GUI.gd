@@ -14,13 +14,14 @@ func _process(delta):
 func timer_controller():
 	var timer_text = ""
 	var level_timer = $"../Timers/LevelTimer"
-	if level_timer.time_left/60 < 10:
-		timer_text = "0" + str(int(level_timer.time_left/60)) + ":"
-	else:
-		timer_text = str(int(level_timer.time_left/60)) + ":"
-	if int(level_timer.time_left)%60 < 10:
-		timer_text += "0" + str(int(level_timer.time_left)%60)
-	else:
-		timer_text += str(int(level_timer.time_left)%60)
-	$TimerLabel.text = timer_text
+	if $TimerLabel.text != "66:66":
+		if level_timer.time_left/60 < 10:
+			timer_text = "0" + str(int(level_timer.time_left/60)) + ":"
+		else:
+			timer_text = str(int(level_timer.time_left/60)) + ":"
+		if int(level_timer.time_left)%60 < 10:
+			timer_text += "0" + str(int(level_timer.time_left)%60)
+		else:
+			timer_text += str(int(level_timer.time_left)%60)
+		$TimerLabel.text = timer_text
 	

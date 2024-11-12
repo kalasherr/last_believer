@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://o43jf0xsmh27"]
+
+[ext_resource type="Shader" path="res://shader.gdshader" id="1_jpyir"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wnyyw"]
+shader = ExtResource("1_jpyir")
+shader_parameter/crt_curve = 0.0
+shader_parameter/crt_scan_line_color = 0.15
+shader_parameter/aperture_grille_rate = 0.8
+shader_parameter/rf_switch_esque_blur = 0.0
+shader_parameter/white_noise_rate = 0.0
+
+[node name="Shader" type="ColorRect"]
+z_index = 200
+material = SubResource("ShaderMaterial_wnyyw")
+custom_minimum_size = Vector2(100, 100)
+offset_right = 320.0
+offset_bottom = 240.0

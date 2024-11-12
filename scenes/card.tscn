@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhjuby025fx7n"]
+[gd_scene load_steps=11 format=3 uid="uid://dhjuby025fx7n"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_01qit"]
 [ext_resource type="Texture2D" uid="uid://d3vvjcxmprftk" path="res://sprites/gui/psalm.png" id="1_y4mjp"]
 [ext_resource type="FontFile" uid="uid://dbl2o1uud4k7q" path="res://PixeloidMono-d94EV.ttf" id="3_t8uph"]
+[ext_resource type="Texture2D" uid="uid://vcs4bclaqkke" path="res://sprites/gui/button2.png" id="4_gnls6"]
+[ext_resource type="Texture2D" uid="uid://datndcbcrijlv" path="res://sprites/gui/button2_hover.png" id="5_kwb1c"]
+[ext_resource type="BitMap" uid="uid://wdey7gj3e4q1" path="res://sprites/gui/button2_mask.png" id="5_nxt1d"]
+[ext_resource type="AudioStream" uid="uid://dyiuumxgyrhc5" path="res://707042__vilkas_sound__vs-button-click-05.mp3" id="7_rm0m1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7aiss"]
 font = ExtResource("3_t8uph")
@@ -13,6 +17,11 @@ font_color = Color(0.121569, 0.121569, 0.12549, 1)
 font = ExtResource("3_t8uph")
 font_size = 9
 font_color = Color(0.501961, 0.498039, 0.498039, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hj2wj"]
+font = ExtResource("3_t8uph")
+font_size = 9
+font_color = Color(0.580392, 0.627451, 0.619608, 1)
 
 [node name="Card" type="Control"]
 layout_mode = 3
@@ -45,11 +54,29 @@ label_settings = SubResource("LabelSettings_vjcjh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 194.0
 offset_right = 96.0
 offset_bottom = 205.0
+texture_normal = ExtResource("4_gnls6")
+texture_pressed = ExtResource("5_kwb1c")
+texture_hover = ExtResource("5_kwb1c")
+texture_click_mask = ExtResource("5_nxt1d")
+
+[node name="CenterContainer" type="CenterContainer" parent="Button"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Button/CenterContainer"]
+layout_mode = 2
+text = "Select"
+label_settings = SubResource("LabelSettings_hj2wj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("7_rm0m1")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

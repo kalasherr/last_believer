@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwuljdivhbot6"]
+
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_pnxyg"]
+[ext_resource type="Texture2D" uid="uid://co5t6hkkommbu" path="res://sprites/enemies/boss1.png" id="2_nwgur"]
+[ext_resource type="Texture2D" uid="uid://ci4xwkg0ps0ko" path="res://sprites/enemies/boss2.png" id="3_fmhgw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dqdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nwgur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fmhgw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qfir5"]
+radius = 4.12311
+
+[sub_resource type="Animation" id="Animation_kvt4u"]
+resource_name = "spawn"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 10), Vector2(-10, 10), Vector2(-15, -10), Vector2(0, -15), Vector2(15, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 10), Vector2(-10, 10), Vector2(-15, -10), Vector2(0, -15), Vector2(15, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_abfrb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lxdx2"]
+_data = {
+"RESET": SubResource("Animation_abfrb"),
+"spawn": SubResource("Animation_kvt4u")
+}
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_pnxyg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3dqdr")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_qfir5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lxdx2")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

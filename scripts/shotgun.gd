@@ -11,6 +11,9 @@ func load_stats():
 
 func attack():
 	if $CooldownTimer.time_left == 0:
+		$AudioStreamPlayer2D.pitch_scale = 1/cooldown
+		$AudioStreamPlayer2D.play()
+		
 		$Animation.play("shotgun_back_move")
 		$CooldownTimer.start(cooldown)
 		for i in range(0,bullets_per_shot):

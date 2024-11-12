@@ -13,6 +13,8 @@ func _process(delta):
 	movement_process()
 
 func movement_process():
+	
+		
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 	if Input.is_action_pressed("move_down"):
@@ -22,6 +24,8 @@ func movement_process():
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if velocity != Vector2.ZERO:
+		if not_playing():
+			_on_main_sprite_animation_finished()
 		$Sprites/MainSprite.play()
 		if diagonalized_movement == false:
 			diagonalized_movement = true
@@ -35,7 +39,7 @@ func movement_process():
 	sprite_controller()
 	move_and_slide()
 	velocity = Vector2.ZERO
-
+	
 	if Input.is_action_pressed("fire"):
 		$Weapon.get_child(0).attack()
 
@@ -58,9 +62,21 @@ func sprite_controller():
 func _on_hit_box_area_entered(area):
 	if area.get_parent() is Enemy or area.get_parent() is ImpProjectile:
 		hp -= 1
+		$Sounds/LoseHp.play()
 		if hp!=0:
 			for enemy in $KnockbackArea.get_overlapping_areas():
 				if enemy.get_parent() is Enemy :
 					enemy.get_parent().push((enemy.get_parent().global_position - global_position).normalized(), 100)
 				elif area.get_parent() is ImpProjectile:
 					area.get_parent().queue_free()
+
+
+func _on_main_sprite_animation_finished():
+	var random = randf_range(1,4)
+	get_node("Sounds/AudioStreamPlayer2D" + str(round(random))).play()
+
+func not_playing():
+	for child in $Sounds.get_children():
+		if child.playing:
+			return false
+	return true

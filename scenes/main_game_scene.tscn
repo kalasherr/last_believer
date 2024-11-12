@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4x2a7r5ywi1l"]
+[gd_scene load_steps=13 format=3 uid="uid://b4x2a7r5ywi1l"]
 
 [ext_resource type="PackedScene" uid="uid://dcytc5uniypg" path="res://scenes/player.tscn" id="1_fkihn"]
 [ext_resource type="Script" path="res://scripts/main_game_scene.gd" id="1_r3edf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/GUI.gd" id="5_lfrqj"]
 [ext_resource type="Texture2D" uid="uid://dequxhle6egi5" path="res://sprites/gui/crux.png" id="6_2uune"]
 [ext_resource type="FontFile" uid="uid://dbl2o1uud4k7q" path="res://PixeloidMono-d94EV.ttf" id="6_s00uw"]
+[ext_resource type="AudioStream" uid="uid://tsefh73hpudf" path="res://273804__brainclaim__dark-choir-singing.wav" id="7_y6hsx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yt6jc"]
 texture = ExtResource("3_kb8s7")
@@ -59,7 +60,6 @@ wait_time = 40.0
 one_shot = true
 
 [node name="SpawnTimer" type="Timer" parent="Timers"]
-wait_time = 1.5
 
 [node name="GUI" type="Node2D" parent="."]
 z_index = 100
@@ -110,5 +110,10 @@ texture = ExtResource("6_2uune")
 expand_mode = 1
 stretch_mode = 2
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_y6hsx")
+volume_db = -10.0
+
 [connection signal="timeout" from="Timers/LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name Enemy
-var hp = 50
+var hp = 30
 var speed = 50
 var pushed = false
 var default_push_speed = 150

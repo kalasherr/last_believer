@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs0qdvq0c0yt5"]
+
+[ext_resource type="Script" path="res://scripts/effect_descriptions.gd" id="1_58xwu"]
+[ext_resource type="FontFile" uid="uid://dbl2o1uud4k7q" path="res://PixeloidMono-d94EV.ttf" id="2_6axit"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4i50y"]
+font = ExtResource("2_6axit")
+font_size = 18
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_58xwu")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 240.0
+text = "Art and programming by
+Kalasher
+Sounds from freesound.org
+Main menu theme by
+ UNIVERSFIELD
+Button click sound by 
+Vilkas_Sound"
+label_settings = SubResource("LabelSettings_4i50y")
+horizontal_alignment = 1
+vertical_alignment = 1

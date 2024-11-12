@@ -12,6 +12,10 @@ func _ready():
 		6: text_to_print = "Beati mundo corde,\n quoniam ipsi Deum videbunt."
 		7: text_to_print = "Beati pacifici,\n quoniam filii Dei vocabuntur."
 		8: text_to_print = "Beati, qui persecutionem\n patiuntur propter iustitiam,\n quoniam ipsorum est regnum caelorum."
+		9: text_to_print = "Game by Kalasherr\n Thank you for playing"
 	$CenterContainer/Label.text = text_to_print
 	await get_tree().create_timer(3).timeout
-	SceneTransfer.transfer(self, "res://scenes/main_game_scene.tscn")
+	if Global.current_floor < 9:
+		SceneTransfer.transfer(self, "res://scenes/main_game_scene.tscn")
+	else:
+		SceneTransfer.transfer(self, "res://scenes/main_menu.tscn")
